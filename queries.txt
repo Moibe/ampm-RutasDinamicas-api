@@ -1,0 +1,36 @@
+#TABLAS PARA CONSULTAS: 
+
+#Todas las guías.
+vwGetGuiasImpresasXRuta
+
+#Avance Total de las guías 
+vwGetGuiasImpresasAvance
+
+#Avance Total por Rutas
+vwGetGuiasImpresasXRutaAvance
+
+#Avance Total por Clientes
+vwGetGuiasImpresasXClienteAvance  
+
+#QUERIES
+
+#Todas las guías.
+select * 
+from vwGetGuiasImpresasXRuta 
+where OficinaId=2 and TipoRuta='DINAMICA'
+
+#Avance Total de las guías 
+select Total, Avance, Pendiente, [%Avance], [%Pendiente]
+from vwGetGuiasImpresasAvance 
+where OficinaId=2 and TipoRuta='DINAMICA'
+
+#Avance Total por Rutas
+select Ruta, Total, Avance, Pendiente, [%Avance], [%Pendiente]
+from vwGetGuiasImpresasXRutaAvance 
+where OficinaId=2 and TipoRuta='DINAMICA'
+
+#Avance Total por Clientes
+select Cliente, Total, Avance, Pendiente, [%Avance], [%Pendiente]
+from vwGetGuiasImpresasXClienteAvance 
+where OficinaId=2 and TipoRuta='DINAMICA'
+
