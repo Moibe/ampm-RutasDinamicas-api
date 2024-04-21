@@ -1,1 +1,1 @@
-avanceXcliente = "SELECT TOP (8) Cliente, Total, Avance, Pendiente, [%Avance], [%Pendiente] FROM vwGetGuiasImpresasXClienteAvance where OficinaId=2 and TipoRuta='FIJA'"
+avanceXcliente = "SELECT TOP (8) Cliente, Total, Avance, Pendiente, [%Avance], [%Pendiente] FROM vwGetGuiasImpresasXClienteAvance where OficinaId=2 and TipoRuta='FIJA' ORDER BY Total DESC"

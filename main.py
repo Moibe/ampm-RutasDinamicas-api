@@ -1,14 +1,19 @@
-from fastapi import FastAPI
 import requests
+import connAMPM
+from fastapi import FastAPI
 from configuracion import API_KEY
-
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
 
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=['*']
+)
 
 @app.get("/")
 def read_root():
-    return {"Hello": "Moisés Briseño Estrello."}
+    return {"AMPM": "Moisés Briseño Estrello."}
 
 
 @app.get("/items/{item_id}")
@@ -42,5 +47,7 @@ def obten_estado():
     }
 @app.get("/getAvanceXClientes")
 def getAvancexClientes():
+   
+   resultado = connAMPM.do()
          
-   return {"Hello": "Moisés Briseño Estrello."}
+   return resultado
