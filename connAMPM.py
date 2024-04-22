@@ -4,8 +4,8 @@ import pyodbc
 import queries
 import configuracion
 
-def do():
-
+def do(consulta):
+     
     cadena_conexion = configuracion.conn
 
     conexion = pyodbc.connect(cadena_conexion)
@@ -13,7 +13,7 @@ def do():
     time.sleep(1)
 
     cursor = conexion.cursor()
-    cursor.execute(queries.avanceXcliente)
+    cursor.execute(consulta)
 
     filas = cursor.fetchall()
 
@@ -21,28 +21,17 @@ def do():
     print(f"Hay {count_filas} filas.")
     time.sleep(1)
 
-    #Impresión Normal
-
-    # for fila in filas:
-    #     # Imprimir cada campo por separado
-    #     print("Cliente:", fila[0])
-    #     print("Total:", fila[1])
-    #     print("Avance:", fila[2])
-    #     print("Pendiente:", fila[3])
-    #     print("[%Avance]:", fila[4])
-    #     print("[%Pendiente]:", fila[5])
-
     json_data = []
 
     for fila in filas:
         
         row_data = {
-            "Cliente": fila[0],
-            "Total": fila[1],
-            "Avance": fila[2],
-            "Pendiente": fila[3],
-            "[%Avance]": str(round(fila[4],2)),
-            "[%Pendiente]": str(round(fila[5],2))
+            # "Cliente": fila[0],
+            "Total": fila[0],
+            "Avance": fila[1],
+            "Pendiente": fila[2],
+            "[%Avance]": str(round(fila[3],2)),
+            "[%Pendiente]": str(round(fila[4],2))
         }
 
         json_data.append(row_data)
