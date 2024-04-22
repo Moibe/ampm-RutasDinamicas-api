@@ -53,19 +53,19 @@ def obten_estado():
 @app.get("/getAvanceTotal")
 def getAvanceTotal():
    #Después: Agregar parámetro para cuantos resultados.
-   resultado = connAMPM.do(queries.avanceTotal)
+   resultado = connAMPM.doAvanceTotal(queries.avanceTotal)
    return resultado
 
 #Avance por Ruta.
 @app.get("/getAvanceXRuta")
 def getAvancexRuta():
    #Después: Agregar parámetro para cuantos resultados.
-   resultado = connAMPM.do(queries.avanceXRuta)
+   resultado = connAMPM.doAvanceXRuta(queries.avanceXRuta)
    return resultado
 
 #Avance por Cliente.
-@app.get("/getAvanceXClientes")
-def getAvancexClientes():
+@app.get("/getAvanceXCliente")
+def getAvancexCliente():
    #Después: Agregar parámetro para cuantos resultados.
-   resultado = connAMPM.do(queries.avanceXcliente)
+   resultado = connAMPM.doAvanceXCliente(queries.avanceXcliente)
    return resultado

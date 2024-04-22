@@ -4,29 +4,22 @@ import pyodbc
 import queries
 import configuracion
 
-def do(consulta):
-     
-    cadena_conexion = configuracion.conn
+#Conexión a Base
+cadena_conexion = configuracion.conn
+conexion = pyodbc.connect(cadena_conexion)
+print(conexion)
+cursor = conexion.cursor()
 
-    conexion = pyodbc.connect(cadena_conexion)
-    print(conexion)
-    time.sleep(1)
+def doAvanceTotal(consulta):
 
-    cursor = conexion.cursor()
     cursor.execute(consulta)
-
     filas = cursor.fetchall()
-
-    count_filas = len(filas)
-    print(f"Hay {count_filas} filas.")
-    time.sleep(1)
 
     json_data = []
 
     for fila in filas:
-        
+
         row_data = {
-            # "Cliente": fila[0],
             "Total": fila[0],
             "Avance": fila[1],
             "Pendiente": fila[2],
@@ -39,9 +32,54 @@ def do(consulta):
     print("jsondata:")
     print(json_data)
 
-    json_string = json.dumps(json_data, indent=4)
+    return json_data
 
-    # Print the JSON string
-    print(json_string)
+def doAvanceXRuta(consulta):
+
+    cursor.execute(consulta)
+    filas = cursor.fetchall()
+
+    json_data = []
+
+    for fila in filas:
+
+        row_data = {
+            "Cliente": fila[0],
+            "Total": fila[1],
+            "Avance": fila[2],
+            "Pendiente": fila[3],
+            "[%Avance]": str(round(fila[4],2)),
+            "[%Pendiente]": str(round(fila[5],2))
+        }
+
+        json_data.append(row_data)
+        
+    print("jsondata:")
+    print(json_data)
+
+    return json_data
+
+def doAvanceXCliente(consulta):
+
+    cursor.execute(consulta)
+    filas = cursor.fetchall()
+
+    json_data = []
+
+    for fila in filas:
+
+        row_data = {
+            "Cliente": fila[0],
+            "Total": fila[1],
+            "Avance": fila[2],
+            "Pendiente": fila[3],
+            "[%Avance]": str(round(fila[4],2)),
+            "[%Pendiente]": str(round(fila[5],2))
+        }
+
+        json_data.append(row_data)
+        
+    print("jsondata:")
+    print(json_data)
 
     return json_data
