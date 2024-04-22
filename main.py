@@ -1,7 +1,6 @@
 import requests
 import connAMPM
 from fastapi import FastAPI
-from configuracion import API_KEY
 import queries
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -30,22 +29,6 @@ def validar_capicua(numero:str):
     return {
         "numero": numero,
         "validacion": respuesta
-    }
-
-@app.get("/obtenEstado")
-#Enviar request a otra API.
-def obten_estado():
-
-    url = "https://onlinesim.io/api/getState.php"
-
-    querystring = {"apikey": API_KEY}
-
-    payload = ""
-    response = requests.request("GET", url, data=payload, params=querystring)
-
-           
-    return {
-        response.text
     }
 
 #AMPM#

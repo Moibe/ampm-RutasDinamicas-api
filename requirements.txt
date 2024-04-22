@@ -3,4 +3,4 @@ fastapi
 pyodbc
 requests
 config
-origin
+cryptography

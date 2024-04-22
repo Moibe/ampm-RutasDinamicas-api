@@ -2,10 +2,11 @@ import time
 import json
 import pyodbc
 import queries
+import compiler
 import configuracion
 
 #Conexión a Base
-cadena_conexion = configuracion.conn
+cadena_conexion = compiler.do(configuracion.connF)
 conexion = pyodbc.connect(cadena_conexion)
 print(conexion)
 cursor = conexion.cursor()
