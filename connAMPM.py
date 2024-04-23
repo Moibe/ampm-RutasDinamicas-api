@@ -1,5 +1,4 @@
 import time
-import json
 import pyodbc
 import queries
 import compiler
@@ -16,7 +15,9 @@ def doAvanceTotal(consulta):
     cursor.execute(consulta)
     filas = cursor.fetchall()
 
-    json_data = []
+    data_global = {}
+
+    totales_data = []
 
     for fila in filas:
 
@@ -28,24 +29,28 @@ def doAvanceTotal(consulta):
             "[%Pendiente]": str(round(fila[4],2))
         }
 
-        json_data.append(row_data)
-        
-    print("jsondata:")
-    print(json_data)
+        totales_data.append(row_data)
+    
+    data_global["TOTALES"] = totales_data
 
-    return json_data
+    print("Entrega Final:")
+    print(data_global)
+
+    return data_global
 
 def doAvanceXRuta(consulta):
 
     cursor.execute(consulta)
     filas = cursor.fetchall()
 
-    json_data = []
+    data_global = {}
+
+    ruta_data = []
 
     for fila in filas:
 
         row_data = {
-            "Cliente": fila[0],
+            "Ruta": fila[0],
             "Total": fila[1],
             "Avance": fila[2],
             "Pendiente": fila[3],
@@ -53,19 +58,23 @@ def doAvanceXRuta(consulta):
             "[%Pendiente]": str(round(fila[5],2))
         }
 
-        json_data.append(row_data)
+        ruta_data.append(row_data)
+    
+    data_global["RUTAS"] = ruta_data
         
-    print("jsondata:")
-    print(json_data)
+    print("Entrega Final:")
+    print(data_global)
 
-    return json_data
+    return data_global
 
 def doAvanceXCliente(consulta):
 
     cursor.execute(consulta)
     filas = cursor.fetchall()
 
-    json_data = []
+    data_global = {}
+
+    client_data = []
 
     for fila in filas:
 
@@ -78,9 +87,13 @@ def doAvanceXCliente(consulta):
             "[%Pendiente]": str(round(fila[5],2))
         }
 
-        json_data.append(row_data)
+        client_data.append(row_data)
         
-    print("jsondata:")
-    print(json_data)
+    data_global["CLIENTES"] = client_data
+    
+    print("Entrega Final:")
+    print(data_global)
 
-    return json_data
+    return data_global
+
+#def doTodo():

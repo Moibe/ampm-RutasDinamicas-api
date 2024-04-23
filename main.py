@@ -1,4 +1,3 @@
-import requests
 import connAMPM
 from fastapi import FastAPI
 import queries
