@@ -19,17 +19,6 @@ def read_root():
 def read_item(item_id: int, q: str = None):
     return {"item_id": item_id, "q": q}
 
-@app.get("/validar/{numero}")
-def validar_capicua(numero:str):
-    respuesta = "Nó es capicúa"
-
-    if numero == numero[::-1]:
-        respuesta = "Es capicúa"
-    return {
-        "numero": numero,
-        "validacion": respuesta
-    }
-
 #AMPM#
 #Avance por Ruta.
 @app.get("/getAvanceTotal")
@@ -49,5 +38,12 @@ def getAvancexRuta():
 @app.get("/getAvanceXCliente")
 def getAvancexCliente():
    #Después: Agregar parámetro para cuantos resultados.
-   resultado = connAMPM.doAvanceXCliente(queries.avanceXcliente)
+   resultado = connAMPM.doAvanceXCliente(queries.avanceXCliente)
+   return resultado
+
+#Total de la Información.
+@app.get("/getTodo")
+def getTodo():
+   #Después: Agregar parámetro para cuantos resultados.
+   resultado = connAMPM.doTodo()
    return resultado
