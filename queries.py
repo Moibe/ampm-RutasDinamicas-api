@@ -1,5 +1,3 @@
-#Definir el TOP desde aquí.
-
 avanceTotal = """
 SELECT Total, Avance, Pendiente, [%Avance], [%Pendiente] 
 FROM vwGetGuiasImpresasAvance 

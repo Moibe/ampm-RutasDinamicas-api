@@ -1,4 +1,3 @@
-import time 
 import configuracion
 from cryptography.fernet import Fernet
 

@@ -4,7 +4,12 @@ import compiler
 import configuracion
 
 #Conexión a Base
-cadena_conexion = compiler.do(configuracion.connF)
+#PRUEBAS
+#cadena_conexion = compiler.do(configuracion.connF)
+
+#!!!!!Producción
+cadena_conexion = compiler.do(configuracion.connP)
+
 conexion = pyodbc.connect(cadena_conexion)
 print(conexion)
 cursor = conexion.cursor()

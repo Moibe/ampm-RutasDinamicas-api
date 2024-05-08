@@ -12,14 +12,9 @@ app.add_middleware(
 
 @app.get("/")
 def read_root():
-    return {"AMPM": "Moisés Briseño Estrello."}
+    return {"AMPM": "API Etiquetado de Rutas Dinámicas."}
 
 
-@app.get("/items/{item_id}")
-def read_item(item_id: int, q: str = None):
-    return {"item_id": item_id, "q": q}
-
-#AMPM#
 #Avance por Ruta.
 @app.get("/getAvanceTotal")
 def getAvanceTotal():
