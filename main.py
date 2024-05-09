@@ -15,7 +15,7 @@ def read_root():
     return {"AMPM": "API Etiquetado de Rutas Dinámicas."}
 
 
-#Avance por Ruta.
+#Avance Total.
 @app.get("/getAvanceTotal")
 def getAvanceTotal():
    #Después: Agregar parámetro para cuantos resultados.
