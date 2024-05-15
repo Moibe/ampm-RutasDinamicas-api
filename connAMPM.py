@@ -59,7 +59,10 @@ def doAvanceXRuta(consulta):
             "Avance": fila[2],
             "Pendiente": fila[3],
             "[%Avance]": str(round(fila[4],2)),
-            "[%Pendiente]": str(round(fila[5],2))
+            "[%Pendiente]": str(round(fila[5],2)),
+            "Inicio": fila[6],
+            "Ultimo": fila[7],
+            "Tiempo": fila[8],
         }
 
         ruta_data.append(row_data)
@@ -139,7 +142,10 @@ def doTodo():
             "Avance": fila[2],
             "Pendiente": fila[3],
             "[%Avance]": str(round(fila[4],2)),
-            "[%Pendiente]": str(round(fila[5],2))
+            "[%Pendiente]": str(round(fila[5],2)),
+            "Inicio": fila[6],
+            "Ultimo": fila[7],
+            "Tiempo": fila[8]
         }
 
         ruta_data.append(row_data)
