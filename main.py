@@ -42,3 +42,10 @@ def getTodo():
    #Después: Agregar parámetro para cuantos resultados.
    resultado = connAMPM.doTodo()
    return resultado
+
+#Respaldo para pruebas.
+@app.get("/fallback")
+def fallback():
+   #Después: Agregar parámetro para cuantos resultados.
+   resultado = connAMPM.fallback()
+   return resultado

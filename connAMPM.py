@@ -1,3 +1,6 @@
+import os
+import json
+import time 
 import pyodbc
 import queries
 import compiler
@@ -5,14 +8,23 @@ import configuracion
 
 #Conexión a Base
 #PRUEBAS
-#cadena_conexion = compiler.do(configuracion.connF)
+cadena_conexion = compiler.do(configuracion.connF)
 
 #!!!!!Producción
-cadena_conexion = compiler.do(configuracion.connP)
+#cadena_conexion = compiler.do(configuracion.connP)
 
-conexion = pyodbc.connect(cadena_conexion)
-print(conexion)
-cursor = conexion.cursor()
+try: 
+
+    conexion = pyodbc.connect(cadena_conexion)
+    print(conexion)
+    cursor = conexion.cursor()
+
+except Exception as e: 
+    print("No fue posible conectar a la base de datos.")
+    time.sleep(7)
+
+
+
 
 def doAvanceTotal(consulta):
 
@@ -174,3 +186,19 @@ def doTodo():
     data_global["CLIENTES"] = client_data    
 
     return data_global
+
+def fallback():
+    # Obtener la ruta del archivo
+    ruta_archivo = os.path.join(os.path.dirname(__file__), "getTodo.json")
+    print("Ésta es la ruta del archivo json de fallback: ", ruta_archivo)
+    time.sleep(6)
+
+    # Abrir y leer el archivo
+    with open(ruta_archivo, "r") as archivo:
+        contenido_archivo = archivo.read()
+        
+    # Cargar el contenido como JSON
+    datos_json = json.loads(contenido_archivo)
+
+    # Devolver los datos cargados
+    return datos_json
