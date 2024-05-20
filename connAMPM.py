@@ -8,13 +8,13 @@ import configuracion
 
 #Conexión a Base
 #PRUEBAS
-cadena_conexion = compiler.do(configuracion.connF)
+#cadena_conexion = compiler.do(configuracion.connF)
 
 #!!!!!Producción
-#cadena_conexion = compiler.do(configuracion.connP)
+cadena_conexion = compiler.do(configuracion.connP)
 
 try: 
-
+    print("Conectando a base de datos...")
     conexion = pyodbc.connect(cadena_conexion)
     print(conexion)
     cursor = conexion.cursor()
@@ -22,8 +22,6 @@ try:
 except Exception as e: 
     print("No fue posible conectar a la base de datos.")
     time.sleep(7)
-
-
 
 
 def doAvanceTotal(consulta):
@@ -42,7 +40,14 @@ def doAvanceTotal(consulta):
             "Avance": fila[1],
             "Pendiente": fila[2],
             "[%Avance]": str(round(fila[3],2)),
-            "[%Pendiente]": str(round(fila[4],2))
+            "[%Pendiente]": str(round(fila[4],2)),
+            "HoraInicio": fila[5],
+            "Inicio": fila[6],
+            "Ultimo": fila[7],
+            "Tiempo(min)": fila[8],
+            "Tiempo": fila[9],
+            "TotalRutas": fila[10],
+            "TotalClientes": fila[11]
         }
 
         totales_data.append(row_data)
@@ -74,7 +79,8 @@ def doAvanceXRuta(consulta):
             "[%Pendiente]": str(round(fila[5],2)),
             "Inicio": fila[6],
             "Ultimo": fila[7],
-            "Tiempo": fila[8],
+            "Tiempo(min)": fila[8],
+            "Tiempo": fila[9]
         }
 
         ruta_data.append(row_data)
@@ -103,7 +109,11 @@ def doAvanceXCliente(consulta):
             "Avance": fila[2],
             "Pendiente": fila[3],
             "[%Avance]": str(round(fila[4],2)),
-            "[%Pendiente]": str(round(fila[5],2))
+            "[%Pendiente]": str(round(fila[5],2)),
+            "Inicio": fila[6],
+            "Ultimo": fila[7],
+            "Tiempo(min)": fila[8],
+            "Tiempo": fila[9]
         }
 
         client_data.append(row_data)
@@ -132,7 +142,14 @@ def doTodo():
             "Avance": fila[1],
             "Pendiente": fila[2],
             "[%Avance]": str(round(fila[3],2)),
-            "[%Pendiente]": str(round(fila[4],2))
+            "[%Pendiente]": str(round(fila[4],2)),
+            "HoraInicio": fila[5],
+            "Inicio": fila[6],
+            "Ultimo": fila[7],
+            "Tiempo(min)": fila[8],
+            "Tiempo": fila[9],
+            "TotalRutas": fila[10],
+            "TotalClientes": fila[11]
         }
 
         totales_data.append(row_data)
@@ -157,7 +174,8 @@ def doTodo():
             "[%Pendiente]": str(round(fila[5],2)),
             "Inicio": fila[6],
             "Ultimo": fila[7],
-            "Tiempo": fila[8]
+            "Tiempo(min)": fila[8],
+            "Tiempo": fila[9]
         }
 
         ruta_data.append(row_data)
@@ -178,7 +196,11 @@ def doTodo():
             "Avance": fila[2],
             "Pendiente": fila[3],
             "[%Avance]": str(round(fila[4],2)),
-            "[%Pendiente]": str(round(fila[5],2))
+            "[%Pendiente]": str(round(fila[5],2)),
+            "Inicio": fila[6],
+            "Ultimo": fila[7],
+            "Tiempo(min)": fila[8],
+            "Tiempo": fila[9]
         }
 
         client_data.append(row_data)
