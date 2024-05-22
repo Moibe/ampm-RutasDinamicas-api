@@ -24,9 +24,10 @@ except Exception as e:
     time.sleep(7)
 
 
-def doAvanceTotal(consulta):
+def doAvanceTotal():
 
-    cursor.execute(consulta)
+    query = queries.avanceTotal
+    cursor.execute(query)
     filas = cursor.fetchall()
 
     data_global = {}
@@ -59,9 +60,10 @@ def doAvanceTotal(consulta):
 
     return data_global
 
-def doAvanceXRuta(consulta):
+def doAvanceXRuta():
 
-    cursor.execute(consulta)
+    query = queries.avanceXRuta
+    cursor.execute(query)
     filas = cursor.fetchall()
 
     data_global = {}
@@ -92,9 +94,10 @@ def doAvanceXRuta(consulta):
 
     return data_global
 
-def doAvanceXCliente(consulta):
+def doAvanceXCliente():
 
-    cursor.execute(consulta)
+    query = queries.avanceXCliente
+    cursor.execute(query)
     filas = cursor.fetchall()
 
     data_global = {}
@@ -125,12 +128,21 @@ def doAvanceXCliente(consulta):
 
     return data_global
 
-def doTodo():
+def doTodo(campo, orden):
+
+    print("Esto es campo: ", campo)
+    print("Esto es orden: ", orden)
+
+    #El ordenamiento aplica al mismo tiempo para Avance Total, Rutas y Clientes.
+    ordenamiento = "ORDER BY " + campo + " " + orden
+    print("Ordenamiento: ", ordenamiento)
 
     data_global = {}
 
     #RUN ZERO 
-    cursor.execute(queries.avanceTotal)
+    query_avanceTotal = queries.avanceTotal + ordenamiento
+    print("QUERY AVANCE TOTAL: ", query_avanceTotal)
+    cursor.execute(query_avanceTotal)
     filas = cursor.fetchall()
 
     totales_data = []
@@ -157,7 +169,9 @@ def doTodo():
     data_global["TOTALES"] = totales_data
 
     #PRIMER RUN
-    cursor.execute(queries.avanceXRuta)
+    query_avanceXRuta = queries.avanceXRuta + ordenamiento
+    cursor.execute(query_avanceXRuta)
+    print("Query Ruta:", queries.avanceXRuta)
     filas = cursor.fetchall()
     
 
@@ -183,7 +197,8 @@ def doTodo():
     data_global["RUTAS"] = ruta_data
         
     #SEGUNDO RUN
-    cursor.execute(queries.avanceXCliente)
+    query_avanceXCliente = queries.avanceXCliente
+    cursor.execute(query_avanceXCliente)
     filas = cursor.fetchall()
 
     client_data = []

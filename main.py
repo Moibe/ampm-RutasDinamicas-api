@@ -19,28 +19,28 @@ def read_root():
 @app.get("/getAvanceTotal")
 def getAvanceTotal():
    #Después: Agregar parámetro para cuantos resultados.
-   resultado = connAMPM.doAvanceTotal(queries.avanceTotal)
+   resultado = connAMPM.doAvanceTotal()
    return resultado
 
 #Avance por Ruta.
 @app.get("/getAvanceXRuta")
 def getAvancexRuta():
    #Después: Agregar parámetro para cuantos resultados.
-   resultado = connAMPM.doAvanceXRuta(queries.avanceXRuta)
+   resultado = connAMPM.doAvanceXRuta()
    return resultado
 
 #Avance por Cliente.
 @app.get("/getAvanceXCliente")
 def getAvancexCliente():
    #Después: Agregar parámetro para cuantos resultados.
-   resultado = connAMPM.doAvanceXCliente(queries.avanceXCliente)
+   resultado = connAMPM.doAvanceXCliente()
    return resultado
 
 #Total de la Información.
 @app.get("/getTodo")
-def getTodo():
+def getTodo(campo: str = "Pendiente", orden: str = "ASC"):
    #Después: Agregar parámetro para cuantos resultados.
-   resultado = connAMPM.doTodo()
+   resultado = connAMPM.doTodo(campo, orden)
    return resultado
 
 #Respaldo para pruebas.
