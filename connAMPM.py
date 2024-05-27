@@ -24,7 +24,9 @@ except Exception as e:
     time.sleep(7)
 
 
-def doAvanceTotal():
+def doAvanceTotal(campo, orden):
+
+    ordenamiento = "ORDER BY " + campo + " " + orden
 
     query = queries.avanceTotal
     cursor.execute(query)
@@ -60,7 +62,9 @@ def doAvanceTotal():
 
     return data_global
 
-def doAvanceXRuta():
+def doAvanceXRuta(campo, orden):
+
+    ordenamiento = "ORDER BY " + campo + " " + orden
 
     query = queries.avanceXRuta
     cursor.execute(query)
@@ -94,7 +98,9 @@ def doAvanceXRuta():
 
     return data_global
 
-def doAvanceXCliente():
+def doAvanceXCliente(campo, orden):
+
+    ordenamiento = "ORDER BY " + campo + " " + orden
 
     query = queries.avanceXCliente
     cursor.execute(query)
@@ -129,9 +135,6 @@ def doAvanceXCliente():
     return data_global
 
 def doTodo(campo, orden):
-
-    print("Esto es campo: ", campo)
-    print("Esto es orden: ", orden)
 
     #El ordenamiento aplica al mismo tiempo para Avance Total, Rutas y Clientes.
     ordenamiento = "ORDER BY " + campo + " " + orden
@@ -197,7 +200,7 @@ def doTodo(campo, orden):
     data_global["RUTAS"] = ruta_data
         
     #SEGUNDO RUN
-    ordenamiento_clientes = "ORDER BY Pendiente DESC"
+    ordenamiento_clientes = "ORDER BY [%Avance] ASC"
     query_avanceXCliente = queries.avanceXCliente + ordenamiento_clientes
     cursor.execute(query_avanceXCliente)
     filas = cursor.fetchall()
