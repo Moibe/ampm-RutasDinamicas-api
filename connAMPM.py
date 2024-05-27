@@ -197,7 +197,8 @@ def doTodo(campo, orden):
     data_global["RUTAS"] = ruta_data
         
     #SEGUNDO RUN
-    query_avanceXCliente = queries.avanceXCliente
+    ordenamiento_clientes = "ORDER BY Pendiente DESC"
+    query_avanceXCliente = queries.avanceXCliente + ordenamiento_clientes
     cursor.execute(query_avanceXCliente)
     filas = cursor.fetchall()
 
