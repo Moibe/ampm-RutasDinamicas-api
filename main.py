@@ -44,22 +44,38 @@ def getAvancexRuta(campo: str = "Pendiente", orden: str = "ASC"):
       else:
          raise HTTPException(status_code=403, detail="Valor para variable 'orden' inválido. Solo puedes usar los valores 'DESC' y 'ASC' para ordenamiento.")
    else:
-      raise HTTPException(status_code=403, detail="Valor para variable 'campo' inválido. Valores válidos: 'Total', 'Avance', 'Pendiente', '[%Avance]', '[%Pendiente]', 'FPrimero', 'FUltimo', '[Tiempo(min)]', 'Tiempo'")
+      raise HTTPException(status_code=403, detail="Valor para variable 'campo' inválido. Valores válidos: 'Ruta', 'Total', 'Avance', 'Pendiente', '[%Avance]', '[%Pendiente]', 'FPrimero', 'FUltimo', '[Tiempo(min)]', 'Tiempo'")
 
 
 #Avance por Cliente.
 @app.get("/getAvanceXCliente")
 def getAvancexCliente(campo: str = "Pendiente", orden: str = "ASC"):
-   #Después: Agregar parámetro para cuantos resultados.
-   resultado = connAMPM.doAvanceXCliente(campo, orden)
-   return resultado
+
+   if campo in ["Ruta", "Total", "Avance", "Pendiente", "[%Avance]", "[%Pendiente]", "FPrimero", "FUltimo", "[Tiempo(min)]", "Tiempo"]:
+      if orden in ["ASC", "DESC"]:
+   
+         resultado = connAMPM.doAvanceXCliente(campo, orden)
+         return resultado
+      else:
+         raise HTTPException(status_code=403, detail="Valor para variable 'orden' inválido. Solo puedes usar los valores 'DESC' y 'ASC' para ordenamiento.")
+   else:
+      raise HTTPException(status_code=403, detail="Valor para variable 'campo' inválido. Valores válidos: 'Cliente', 'Total', 'Avance', 'Pendiente', '[%Avance]', '[%Pendiente]', 'FPrimero', 'FUltimo', '[Tiempo(min)]', 'Tiempo'")
+
 
 #Total de la Información.
 @app.get("/getTodo")
 def getTodo(campo: str = "[%Avance]", orden: str = "DESC"):
-   #Después: Agregar parámetro para cuantos resultados.
-   resultado = connAMPM.doTodo(campo, orden)
-   return resultado
+
+   if campo in ["Total", "Avance", "Pendiente", "[%Avance]", "[%Pendiente]", "FPrimero", "FUltimo", "[Tiempo(min)]", "Tiempo"]:
+      if orden in ["ASC", "DESC"]:
+   
+         resultado = connAMPM.doTodo(campo, orden)
+         return resultado
+      else:
+         raise HTTPException(status_code=403, detail="Valor para variable 'orden' inválido. Solo puedes usar los valores 'DESC' y 'ASC' para ordenamiento.")
+   else:
+      raise HTTPException(status_code=403, detail="Valor para variable 'campo' inválido. Valores válidos: 'Total', 'Avance', 'Pendiente', '[%Avance]', '[%Pendiente]', 'FPrimero', 'FUltimo', '[Tiempo(min)]', 'Tiempo'")
+
 
 #Respaldo para pruebas.
 @app.get("/fallback")
