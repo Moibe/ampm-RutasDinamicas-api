@@ -28,7 +28,7 @@ def doAvanceTotal(campo, orden):
 
     ordenamiento = "ORDER BY " + campo + " " + orden
 
-    query = queries.avanceTotal
+    query = queries.avanceTotal + ordenamiento
     cursor.execute(query)
     filas = cursor.fetchall()
 
@@ -66,7 +66,7 @@ def doAvanceXRuta(campo, orden):
 
     ordenamiento = "ORDER BY " + campo + " " + orden
 
-    query = queries.avanceXRuta
+    query = queries.avanceXRuta + ordenamiento
     cursor.execute(query)
     filas = cursor.fetchall()
 
@@ -102,7 +102,7 @@ def doAvanceXCliente(campo, orden):
 
     ordenamiento = "ORDER BY " + campo + " " + orden
 
-    query = queries.avanceXCliente
+    query = queries.avanceXCliente + ordenamiento
     cursor.execute(query)
     filas = cursor.fetchall()
 
