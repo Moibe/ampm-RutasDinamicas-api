@@ -6,12 +6,28 @@ import queries
 import compiler
 import configuracion
 
+#Valor de Conexión Default:
+
 #Conexión a Base
 #PRUEBAS
 #cadena_conexion = compiler.do(configuracion.connF)
 
 #!!!!!Producción
 cadena_conexion = compiler.do(configuracion.connP)
+
+
+
+conexion_input = input("Conexión (local/produccion): ")
+print("La conexión es: ", conexion_input)
+
+if(conexion_input == "pruebas"):
+    cadena_conexion = compiler.do(configuracion.connF)
+elif(conexion_input == "produccion"):
+    cadena_conexion = compiler.do(configuracion.connP)
+else:
+    print("Usando cadena default.")
+
+
 
 try: 
     print("Conectando a base de datos...")
@@ -21,7 +37,7 @@ try:
 
 except Exception as e: 
     print("No fue posible conectar a la base de datos.")
-    time.sleep(7)
+    time.sleep(6)
 
 
 def doAvanceTotal(campo, orden):

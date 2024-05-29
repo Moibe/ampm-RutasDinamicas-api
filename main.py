@@ -11,6 +11,8 @@ app.add_middleware(
     allow_origins=['*']
 )
 
+
+
 @app.get("/")
 def read_root():
     return {"AMPM": "API Etiquetado de Rutas Dinámicas."}
@@ -45,7 +47,6 @@ def getAvancexRuta(campo: str = "Pendiente", orden: str = "ASC"):
          raise HTTPException(status_code=403, detail="Valor para variable 'orden' inválido. Solo puedes usar los valores 'DESC' y 'ASC' para ordenamiento.")
    else:
       raise HTTPException(status_code=403, detail="Valor para variable 'campo' inválido. Valores válidos: 'Ruta', 'Total', 'Avance', 'Pendiente', '[%Avance]', '[%Pendiente]', 'FPrimero', 'FUltimo', '[Tiempo(min)]', 'Tiempo'")
-
 
 #Avance por Cliente.
 @app.get("/getAvanceXCliente")
