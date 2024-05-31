@@ -1,8 +1,7 @@
 from cryptography.fernet import Fernet
 
-#Con este programa genero una llave de Fernet pero no tiene uso dentro de Sulku. 
-#Podría usarse la clave que ya genere previamente.
+#Aquí puedo generar una nueva llave Fernet para encriptar.
 key = Fernet.generate_key()
 
-# Print the key in base64-encoded format
+#La llave se imprime en formto base64
 print(key.decode('utf-8'))

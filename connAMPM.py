@@ -16,16 +16,15 @@ import configuracion
 cadena_conexion = compiler.do(configuracion.connP)
 
 
+# conexion_input = input("Conexión (pruebas/produccion): ")
+# print("La conexión es: ", conexion_input)
 
-conexion_input = input("Conexión (local/produccion): ")
-print("La conexión es: ", conexion_input)
-
-if(conexion_input == "pruebas"):
-    cadena_conexion = compiler.do(configuracion.connF)
-elif(conexion_input == "produccion"):
-    cadena_conexion = compiler.do(configuracion.connP)
-else:
-    print("Usando cadena default.")
+# if(conexion_input == "pruebas"):
+#     cadena_conexion = compiler.do(configuracion.connF)
+# elif(conexion_input == "produccion"):
+#     cadena_conexion = compiler.do(configuracion.connP)
+# else:
+#     print("Usando cadena default.")
 
 
 
